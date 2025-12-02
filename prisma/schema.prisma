@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  username String   @unique
+  fullname String   @default("users")
+  email    String
+  password String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+
+  @@map("user")
+}
+
+model Voucher {
+  id          Int      @id @default(autoincrement())
+  voucher_code        String?
+  user_group String?
+  status    String?
+  disabled Boolean? @default(false)
+  price   Float?
+  period  String?
+  first_name  String?
+  last_name   String?
+  alias String?
+  phone_number String?
+  created_time  DateTime?
+  activated_time DateTime?
+  expired_time  DateTime?
+  devices String?
+  mac_binding Boolean? @default(false)
+  trafic_used_total String?
+  upload_download_limit String?
+  is_printed Boolean? @default(false)
+  print_count Int? @default(0)
+  print_last_time DateTime?
+
+  created_at  DateTime? @default(now())
+  updated_at  DateTime? @updatedAt
+
+  @@map("vouchers")
+}

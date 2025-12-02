@@ -1,0 +1,1 @@
+import "./seed/UserSeeder.js";
